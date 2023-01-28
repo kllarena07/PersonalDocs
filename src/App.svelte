@@ -67,11 +67,11 @@
       {#if clientStorageLength > 0}
         <ul>
           <li>
-            <DocumentIcon documentName={"New document"} icon={"new"} event={() => displayDocumentCreator = true} />
+            <DocumentIcon documentName={"New document"} preview={"new"} event={() => displayDocumentCreator = true} />
           </li>
           {#each clientStorage as { title, content }, index}
             <li>
-              <DocumentIcon documentName={title} icon={"classic"}  event={() => selectDocument(title, content, index)}/>
+              <DocumentIcon documentName={title} documentContent={content} preview={"classic"}  event={() => selectDocument(title, content, index)}/>
             </li>
           {/each}
         </ul>

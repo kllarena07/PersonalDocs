@@ -15,7 +15,7 @@
         <path d="M12 20.25c2.685 0 5.19-.586 7.078-1.609a8.282 8.282 0 001.897-1.384c.016.121.025.244.025.368 0 2.692-4.03 4.875-9 4.875s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.284 8.284 0 001.897 1.384C6.809 19.664 9.315 20.25 12 20.25z" />
       </svg>
     </button>
-    <input bind:value={documentTitle} title="Rename" />
+    <p bind:textContent={documentTitle} contenteditable spellcheck="false" title="Rename"></p>
   </section>
   <a id="github-icon" target="_blank" rel="noreferrer" href='https://github.com/'><img alt="github icon. this is here to link to the github repo" src={githubIcon} /></a>
 </header>
@@ -30,11 +30,6 @@
     height: 4rem;
     border-bottom: 1px solid #dfe1e5;
     box-shadow: 0 -.25rem .5rem black;
-  }
-  input {
-    margin-left: .5rem;
-    border: none;
-    max-width: 50ch;
   }
   button {
     border: none;
