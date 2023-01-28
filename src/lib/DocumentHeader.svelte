@@ -17,7 +17,7 @@
     </button>
     <input bind:value={documentTitle} spellcheck="false" title="Rename" />
   </section>
-  <a id="github-icon" target="_blank" rel="noreferrer" href='https://github.com/'><img alt="github icon. this is here to link to the github repo" src={githubIcon} /></a>
+  <a id="github-icon" target="_blank" rel="noreferrer" href='https://github.com/kllarena07/PersonalDocs'><img alt="github icon. this is here to link to the github repo" src={githubIcon} /></a>
 </header>
 
 <style>
