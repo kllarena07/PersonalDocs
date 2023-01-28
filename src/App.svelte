@@ -64,20 +64,18 @@
     <DocumentBody bind:content={selectedDocumentContent} />
   {:else}
     <section id="documents-container">
-      {#if clientStorageLength > 0}
-        <ul>
-          <li>
-            <DocumentIcon documentName={"New document"} preview={"new"} event={() => displayDocumentCreator = true} />
-          </li>
+      <ul>
+        <li>
+          <DocumentIcon documentName={"New document"} preview={"new"} event={() => displayDocumentCreator = true} />
+        </li>
+        {#if clientStorageLength > 0}
           {#each clientStorage as { title, content }, index}
             <li>
               <DocumentIcon documentName={title} documentContent={content} preview={"classic"}  event={() => selectDocument(title, content, index)}/>
             </li>
-          {/each}
-        </ul>
-      {:else}
-        <p><i>It doesn't look like you have any documents, go ahead and make some</i></p>
-      {/if}
+        {/each}
+        {/if}
+      </ul>
     </section>
   {/if}
 </main>
