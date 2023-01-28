@@ -76,7 +76,7 @@
     position: absolute;
     right: .25rem;
     top: .25rem;
-    opacity: 100;
+    opacity: 0;
     padding: 0;
     width: 20px;
     background-color: transparent;
