@@ -36,6 +36,9 @@
     background-color: transparent;
     cursor: pointer;
   }
+  input {
+    border: none;
+  }
   #icon-container {
     display: flex;
     align-items: center;
