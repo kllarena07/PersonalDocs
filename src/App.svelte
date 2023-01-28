@@ -11,10 +11,12 @@
   $: clientStorageLength = clientStorage.length
 
   let newDocumentName : string
+  let displayDocumentCreator = false
   function addNewDocument(documentName : string) {
     if(documentName == undefined || documentName == ' ') return
     clientStorage.push( { title: documentName, content: "" } )
     $documentStorage = serialize(clientStorage)
+    newDocumentName = undefined
     displayDocumentCreator = false
   }
 
@@ -32,6 +34,7 @@
     selectedDocumentContent = content
     selectedDocumentIndex = index
     enteredDocument = true
+    console.log(content.length)
   }
   function deselectDocument() {
     selectedDocumentTitle = undefined
@@ -47,8 +50,6 @@
   }
   
   $: { saveContent(selectedDocumentTitle, selectedDocumentContent, selectedDocumentIndex) }
-
-  let displayDocumentCreator = false
 </script>
 
 {#if !enteredDocument}
@@ -73,7 +74,7 @@
             <li>
               <DocumentIcon documentName={title} documentContent={content} preview={"classic"}  clickEvent={() => selectDocument(title, content, index)} deleteEvent={() => removeDocument(index)} />
             </li>
-        {/each}
+          {/each}
         {/if}
       </ul>
     </section>
