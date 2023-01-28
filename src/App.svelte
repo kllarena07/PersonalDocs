@@ -12,7 +12,7 @@
 
   let newDocumentName : string
   function addNewDocument(documentName : string) {
-    if(documentName === undefined) return
+    if(documentName == undefined) return
     clientStorage.push( { title: documentName, content: "" } )
     $documentStorage = serialize(clientStorage)
     displayDocumentCreator = false
@@ -40,13 +40,13 @@
     enteredDocument = false
   }
 
-  function saveContent(title: string, content : string) {
-    if(selectedDocumentIndex < 0) return
-    clientStorage[selectedDocumentIndex] = { title: selectedDocumentTitle, content: selectedDocumentContent }
+  function saveContent(title: string, content : string, index: number) {
+    if(index < 0) return
+    clientStorage[index] = { title: title, content: content }
     $documentStorage = serialize(clientStorage)
   }
   
-  $: { saveContent(selectedDocumentTitle, selectedDocumentContent) }
+  $: { saveContent(selectedDocumentTitle, selectedDocumentContent, selectedDocumentIndex) }
 
   let displayDocumentCreator = false
 </script>
@@ -66,12 +66,12 @@
     <section id="documents-container">
       <ul>
         <li>
-          <DocumentIcon documentName={"New document"} preview={"new"} event={() => displayDocumentCreator = true} />
+          <DocumentIcon documentName={"New document"} preview={"new"} clickEvent={() => displayDocumentCreator = true} />
         </li>
         {#if clientStorageLength > 0}
           {#each clientStorage as { title, content }, index}
             <li>
-              <DocumentIcon documentName={title} documentContent={content} preview={"classic"}  event={() => selectDocument(title, content, index)}/>
+              <DocumentIcon documentName={title} documentContent={content} preview={"classic"}  clickEvent={() => selectDocument(title, content, index)} deleteEvent={() => removeDocument(index)} />
             </li>
         {/each}
         {/if}

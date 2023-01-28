@@ -6,7 +6,7 @@
 
 <section id="creator-background">
   <div id="creator-modal">
-    <input bind:value={newDocumentName} placeholder="enter the new documents name" />
+    <input bind:value={newDocumentName} placeholder="Enter a document title" />
     <button on:click={addEvent}>Add</button>
     <button id="exit" on:click={exitEvent}>X</button>
   </div>
@@ -42,5 +42,6 @@
     right: 0;
     border: none;
     background-color: transparent;
+    cursor: pointer;
   }
 </style>
