@@ -12,7 +12,7 @@
 
   let newDocumentName : string
   function addNewDocument(documentName : string) {
-    if(documentName == undefined) return
+    if(documentName == undefined || documentName == ' ') return
     clientStorage.push( { title: documentName, content: "" } )
     $documentStorage = serialize(clientStorage)
     displayDocumentCreator = false
