@@ -7,22 +7,21 @@
   import { serialize, deserialize } from "./lib/utils";
 	import { documentStorage } from "./storage";
 
-  $: clientStorage = deserialize($documentStorage)
-  $: clientStorageLength = clientStorage.length
+  $: fetchedStorage = deserialize($documentStorage)
 
   let newDocumentName : string
   let displayDocumentCreator = false
   function addNewDocument(documentName : string) {
     if(documentName == undefined || documentName == ' ') return
-    clientStorage.push( { title: documentName, content: "" } )
-    $documentStorage = serialize(clientStorage)
+    fetchedStorage.push( { title: documentName, content: "" } )
+    $documentStorage = serialize(fetchedStorage)
     newDocumentName = undefined
     displayDocumentCreator = false
   }
 
   function removeDocument(index : number) {
-    clientStorage.splice(index, 1)
-    $documentStorage = serialize(clientStorage)
+    fetchedStorage.splice(index, 1)
+    $documentStorage = serialize(fetchedStorage)
   }
 
   let selectedDocumentTitle : string
@@ -34,7 +33,6 @@
     selectedDocumentContent = content
     selectedDocumentIndex = index
     enteredDocument = true
-    console.log(content.length)
   }
   function deselectDocument() {
     selectedDocumentTitle = undefined
@@ -45,11 +43,11 @@
 
   function saveContent(title: string, content : string, index: number) {
     if(index < 0) return
-    clientStorage[index] = { title: title, content: content }
-    $documentStorage = serialize(clientStorage)
+    fetchedStorage[index] = { title: title, content: content }
+    $documentStorage = serialize(fetchedStorage)
   }
   
-  $: { saveContent(selectedDocumentTitle, selectedDocumentContent, selectedDocumentIndex) }
+  $: saveContent(selectedDocumentTitle, selectedDocumentContent, selectedDocumentIndex)
 </script>
 
 {#if !enteredDocument}
@@ -69,13 +67,11 @@
         <li>
           <DocumentIcon documentName={"New document"} preview={"new"} clickEvent={() => displayDocumentCreator = true} />
         </li>
-        {#if clientStorageLength > 0}
-          {#each clientStorage as { title, content }, index}
-            <li>
-              <DocumentIcon documentName={title} documentContent={content} preview={"classic"}  clickEvent={() => selectDocument(title, content, index)} deleteEvent={() => removeDocument(index)} />
-            </li>
-          {/each}
-        {/if}
+        {#each fetchedStorage as { title, content }, index}
+          <li>
+            <DocumentIcon documentName={title} documentContent={content} preview={"classic"}  clickEvent={() => selectDocument(title, content, index)} deleteEvent={() => removeDocument(index)} />
+          </li>
+        {/each}
       </ul>
     </section>
   {/if}

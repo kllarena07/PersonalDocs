@@ -9,7 +9,8 @@
 <style>
   #document-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: rgb(247,248,250);
   }
   textarea {
