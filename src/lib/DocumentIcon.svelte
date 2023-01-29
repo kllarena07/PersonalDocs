@@ -50,13 +50,14 @@
   }
   .document-content {
     width: 100%;
-    height: min(253px, 253px);
-    border: none;
+    max-height: 253px;
     border-radius: .35rem;
+    border: none;
     resize: none;
     outline: none;
     font-size: calc(208/816 * 1rem);
-    padding: calc(208/816 * 5rem);
+    padding: 0;
+    margin: calc(208/816 * 5rem);
     overflow: hidden;
   }
   .file-icon {
