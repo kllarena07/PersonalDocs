@@ -11,9 +11,9 @@
 
   let newDocumentName : string
   let displayDocumentCreator = false
-  function addNewDocument(documentName : string) {
-    if(documentName == undefined || documentName == ' ') return
-    fetchedStorage.push( { title: documentName, content: "" } )
+  function addNewDocument(title : string) {
+    if(title == undefined || title == ' ') return
+    fetchedStorage.push( { title, content: '' } )
     $documentStorage = serialize(fetchedStorage)
     newDocumentName = undefined
     displayDocumentCreator = false
@@ -43,7 +43,7 @@
 
   function saveContent(title: string, content : string, index: number) {
     if(index < 0) return
-    fetchedStorage[index] = { title: title, content: content }
+    fetchedStorage[index] = { title, content }
     $documentStorage = serialize(fetchedStorage)
   }
   
